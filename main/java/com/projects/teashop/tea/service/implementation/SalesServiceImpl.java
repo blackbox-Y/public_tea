@@ -74,16 +74,4 @@ public class SalesServiceImpl implements SalesService {
 		teaRepo.deleteById(Id);
 		return Id.toString() + " is deleted";
 	}
-
-//	@Override
-//	public Page<Tea> searchTea(int pageNumber, TeaRequest request) {
-//		Pageable pageable = PageRequest.of(pageNumber, 14, Sort.by("Id"));
-//		return teaRepo.searchRequest(
-//				pageable, 
-//				request.getName(), 
-////				request.getTea_sort(), 
-//				request.getRegion(),
-//				request.getYear());
-//	}
-
 }
