@@ -17,7 +17,6 @@ public interface OrderService {
 
 	Page <Order> findByUser (User user, int pagenumber);
 	Page <Order> findByUserId (Long Id, int pagenumber);
-//	Page <Order> searchOrders (int pagenumber, OrderSearchRequest request);
 	
 	Order createOrder (User user);
 	
