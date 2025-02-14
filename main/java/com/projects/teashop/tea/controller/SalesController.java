@@ -66,11 +66,4 @@ public class SalesController {
 		return salesService.deleteTea(Id);
 	}
 	
-	
-	
-//	@GetMapping("/show/find")
-//	public Page <Tea> findSpecific (int PageNumber, @RequestParam TeaRequest request) {
-//		return salesService.searchTea(PageNumber, request);
-//	}
-	
 }
