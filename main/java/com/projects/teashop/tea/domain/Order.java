@@ -35,52 +35,52 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(of = {"Id"})
 public class Order { 
-		@Id 
-		@Column(name = "Id")
-		@SequenceGenerator(
-				name = "order_id_seq", 
-				sequenceName = "order_id_seq", 
-				allocationSize = 1)
-	    @GeneratedValue(
-	    		strategy = GenerationType.SEQUENCE,
-	    		generator = "order_id_seq")
-	    private Long Id;
+	@Id 
+	@Column(name = "Id")
+	@SequenceGenerator(
+			name = "order_id_seq", 
+			sequenceName = "order_id_seq", 
+			allocationSize = 1)
+    	@GeneratedValue(
+		strategy = GenerationType.SEQUENCE,
+		generator = "order_id_seq")
+    	private Long Id;
+	
+	@ManyToMany
+	private HashMap<Tea, GRAMS> orderList = new HashMap<>();
+	
+	@ElementCollection(targetClass = Order_status.class, 
+						fetch = FetchType.EAGER)
+	@CollectionTable(name = "order_status", 
+					joinColumns = @JoinColumn(name = "TEA_id"))
+	@Enumerated(EnumType.STRING)
+    	private Set<Order_status> status;
+	
+	@ManyToOne
+	private User user;
+	
+	
+	@Column(name = "total_price", nullable = false)
+    	private Double totalPrice;
+	
+	@Column(name = "date", 
+			columnDefinition = "timestamp default current_timestamp")
+    	private LocalDateTime date = LocalDateTime.now();
+	
+	@Column(name = "name", 
+			nullable = false, 
+			columnDefinition = "TEXT")
+	private String name;
+	
+	@Column(name = "surname", 
+			nullable = false,
+			columnDefinition = "TEXT")
+	private String surname;
 		
-		@ManyToMany
-		private HashMap<Tea, GRAMS> orderList = new HashMap<>();
+	@Column(name = "email", nullable = false)
+	private String email;
 		
-		@ElementCollection(targetClass = Order_status.class, 
-							fetch = FetchType.EAGER)
-		@CollectionTable(name = "order_status", 
-						joinColumns = @JoinColumn(name = "TEA_id"))
-		@Enumerated(EnumType.STRING)
-	    private Set<Order_status> status;
-		
-		@ManyToOne
-		private User user;
-		
-		
-		@Column(name = "total_price", nullable = false)
-	    private Double totalPrice;
-		
-		@Column(name = "date", 
-				columnDefinition = "timestamp default current_timestamp")
-	    private LocalDateTime date = LocalDateTime.now();
-		
-		@Column(name = "name", 
-				nullable = false, 
-				columnDefinition = "TEXT")
-		private String name;
-		
-		@Column(name = "surname", 
-				nullable = false,
-				columnDefinition = "TEXT")
-		private String surname;
-		
-		@Column(name = "email", nullable = false)
-		private String email;
-		
-		@Column(name = "isOrdered", updatable = false)
-		private boolean isOrdered;
+	@Column(name = "isOrdered", updatable = false)
+	private boolean isOrdered;
 		
 }
