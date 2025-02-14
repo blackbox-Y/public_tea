@@ -33,7 +33,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class OrderServiceImpl implements OrderService{
 	private final OrderRepository orderRepo;
-	private final UserService userService; //change to spring security get authentication
+	private final UserService userService; 
 	private final SalesService salesService;
 	
 	@Override
@@ -55,26 +55,7 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public Page<Order> findByUserId(Long Id, int pagenumber) {
 		return findByUser(userService.findById(Id), pagenumber);
-	}
-
-
-//	@Override
-//	public Page<Order> searchOrders(int pagenumber, OrderSearchRequest request) {
-//		Pageable pageable = PageRequest.of(pagenumber, 10);
-//		int i =request.getPriceMin();
-//		int j = request.getPriceMax();
-//		return orderRepo.searchOrders(
-//				pageable, 
-//				request.getName(),
-//				request.getSurname(),
-//				request.getEmail(),
-//				i, 
-//				j
-//				);
-//	}
-
-
-	
+	}	
 
 	@Override
 	public Order createOrder(User user) {
