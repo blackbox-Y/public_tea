@@ -20,21 +20,20 @@ public class Tea {
 	
 	@Id 
 	@Column(
-			name = "id",
-			updatable = false,
-			unique = true)
+		name = "id",
+		updatable = false,
+		unique = true)
 	@SequenceGenerator(
-			name= "tea_id_seq",
-			sequenceName = "tea_id_seq",
-			allocationSize = 1
-			)
+		name= "tea_id_seq",
+		sequenceName = "tea_id_seq",
+		allocationSize = 1)
 	@GeneratedValue(
-			strategy = GenerationType.IDENTITY,
-			generator = "tea_id_seq")
+		strategy = GenerationType.IDENTITY,
+		generator = "tea_id_seq")
 	private Long Id;
 	
 	
-	@Column ( name = "sort", nullable = false)
+	@Column (name = "sort", nullable = false)
 	Set <tea_type> sort;
 	
 	@Column (name = "name", nullable = false)
@@ -52,12 +51,9 @@ public class Tea {
 	@Column (name = "taste")
 	private String taste;
 	
-	
-	//private List <String> photoURLs;
-	
-	
-	@Column (name = "is_available", 
-			columnDefinition = "boolean default true")
+	@Column (
+		name = "is_available", 
+		columnDefinition = "boolean default true")
 	private Boolean isAvailable;
 	
 	@Column (name = "amount")
@@ -70,25 +66,18 @@ public class Tea {
 	private Set <GRAMS> grams;
 	
 	@ElementCollection(
-			targetClass = LeafStructure.class,
-			fetch = FetchType.EAGER
-			)
+		targetClass = LeafStructure.class,
+		fetch = FetchType.EAGER
+		)
 	@CollectionTable(
-			name = "leaf_structure", 
-			joinColumns = @JoinColumn(
-					name = "tea_id"
-					)
-			)
+		name = "leaf_structure", 
+		joinColumns = @JoinColumn(name = "tea_id"))
 	@Enumerated(EnumType.STRING)
 	@Column (name = "leaf_structure")
 	private LeafStructure leaf_structure;	
 	
 	@Column (name = "rate")
 	private Float rate;
-	
-	
-//	@ManyToOne
-//	private List <Review> reviews;
 	
 	@ManyToMany
 	private List <Order> order;
