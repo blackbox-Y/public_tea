@@ -19,17 +19,5 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	
 	@EntityGraph(attributePaths = "user_role")
 	Page <User> findByCity(Pageable pageable, String city);
-	
-//	@EntityGraph(attributePaths = "user_role")
-//	@Query("SELECT user FROM user_table "
-//			+ "WHERE (coalesce(:name, null) IS NULL OR user.name IN name)"
-//			+ "AND (coalesce(:surname, null) IS NULL OR user.surname IN surname)"
-//			+ "AND (coalesce(:coutry, null) IS NULL OR user.country IN country)"
-//			+ "ORDER BY Id ASC")
-//	Page <User> searchRequest (
-//			@Param("name") String name, 
-//			@Param("surname")String surname,
-//			@Param("country") String country
-//			);
 }
 
