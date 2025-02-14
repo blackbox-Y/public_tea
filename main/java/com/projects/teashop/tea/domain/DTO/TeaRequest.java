@@ -14,5 +14,4 @@ public class TeaRequest {
 	private Set <tea_type> sort;
 	private String region;
 	private Short year;
-//	private Boolean isAvailable;
 }
