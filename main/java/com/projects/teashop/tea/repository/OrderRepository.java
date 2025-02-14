@@ -22,39 +22,5 @@ public interface OrderRepository extends JpaRepository<Order, Long>{
 	@EntityGraph(attributePaths = {"tea"})
 	Page <Order> findByUser(User user, Pageable pageable);
 	
-//	
-//	@EntityGraph(attributePaths = {"perfumes", "user", "user.roles"})
-//    @Query("SELECT orders FROM Order orders " 
-//    		+ "WHERE (coalesce(:name, null) IS NULL OR order.name IN name)"
-//			+ "AND (coalesce(:surname, null) IS NULL OR order.surname IN surname)"
-//			+ "AND (coalesce(:email, null) IS NULL OR order.email IN email)"
-//			+ "AND (coalesce(:priceMin, null) IS NULL OR order.totalPrice BETWEEN :priceMin AND :priceMax)"
-//			+ "ORDER BY Id ASC")
-//    Page<Order> searchOrders(
-//    		Pageable pageable, 
-//    		@Param("name") String name,
-//    		@Param("surname") String surname,
-//    		@Param("email") String email,
-//    		@Param("priceMin") Integer priceMin,
-//    		@Param("priceMax") Integer priceMax
-//    		);
-
-//	@EntityGraph(attributePaths = {"perfumes", "user", "user.roles"})
-//    @Query("SELECT orders FROM Order orders " 
-//    		+ "WHERE (coalesce(:name, null) IS NULL OR order.name IN name)"
-//			+ "AND (coalesce(:surname, null) IS NULL OR order.surname IN surname)"
-//			+ "AND (coalesce(:email, null) IS NULL OR order.email IN email)"
-//			+ "AND (coalesce(:priceMin, null) IS NULL OR order.totalPrice BETWEEN :priceMin AND :priceMax)"
-//			+ "AND (coalesce(:user, null) IS NULL OR order.user IN user)"
-//			+ "ORDER BY Id ASC")
-//    Page<Order> searchUserOrders(
-//    		@Param("name") String name,
-//    		@Param("surname") String surname,
-//    		@Param("email") String email,
-//    		@Param("priceMin") Integer priceMin,
-//    		@Param("priceMax") Integer pricemax,
-//    		@Param("user") User user
-//    		);
-//    
     void deleteById (Long Id);
 }
