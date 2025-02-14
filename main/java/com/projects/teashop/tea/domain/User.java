@@ -11,124 +11,73 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Entity (
-		name = "user"
-		)
+@Entity (name = "user")
 @Data
 @Table(
-		name = "user_table",
-		uniqueConstraints = {
-			@UniqueConstraint(
-					name = "email_unique_constrains", 
-					columnNames = {"email"}
-						)	
-				}
-		)
-
+	name = "user_table",
+	uniqueConstraints = {
+		@UniqueConstraint(
+			name = "email_unique_constrains", 
+			columnNames = {"email"})
+	}
+)
 @NoArgsConstructor
 @EqualsAndHashCode(of = {"Id"})
-public class User {
-	
+public class User {	
 	@Id 
 	@Column(
-			name = "Id",
-			updatable = false,
-			unique = true
-			)
-	
+		name = "Id",
+		updatable = false,
+		unique = true)	
 	@SequenceGenerator(
-			name = "users_id_seq", 
-			sequenceName = "users_id_seq", 
-			allocationSize = 1
-			)
-	
-    @GeneratedValue(
-    		strategy = GenerationType.SEQUENCE,
-    		generator = "users_id_seq"
-    		)
-    private Long Id;
-	
-	
+		name = "users_id_seq", 
+		sequenceName = "users_id_seq", 
+		allocationSize = 1)
+	@GeneratedValue(
+		strategy = GenerationType.SEQUENCE,
+		generator = "users_id_seq")
+	private Long Id;	
 	@Column(
-			name = "name", 
-			nullable = false, 
-			columnDefinition = "TEXT"
-			)
+		name = "name", 
+		nullable = false, 
+		columnDefinition = "TEXT")
 	private String name;
 	
 	@Column(
-			name = "surname", 
-			nullable = false, 
-			columnDefinition = "TEXT"
-			)
+		name = "surname", 
+		nullable = false, 
+		columnDefinition = "TEXT")
 	private String surname;
 	
 	@Column(
-			name = "email", 
-			nullable = false
-			)
+		name = "email", 
+		nullable = false)
 	private String email;
 	
 	
 	@Column(
-			name = "country", 
-			columnDefinition = "TEXT"
-			)
+		name = "country", 
+		columnDefinition = "TEXT")
 	private String Country;
 			
-	@Column(
-			name = "city", 
-			columnDefinition = "TEXT"
-			)
+	@Column(name = "city", columnDefinition = "TEXT")
 	private String city;
 	
-	@Column(
-			name = "adress"
-			)
+	@Column(name = "adress")
 	private String Adress;
-
-
-	@Column(
-			name = "password", 
-			nullable = false
-			)
+	
+	
+	@Column(name = "password", nullable = false)
 	private String password;
 	
-	@Column(
-			name = "active"
-			)
-    private boolean active;
-			
-	@Column(
-			name = "activation_code"
-			)
-	private String activationCode;
 	
-	@Column(
-			name = "password_reset_code"
-			)
-	private String passwordResetCode;
-
+	@ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
 	
-	
-	// ------------------- creating a table of Roles
-	@ElementCollection(
-			targetClass = Role.class, 
-			fetch = FetchType.EAGER
-			)
-	
-	@CollectionTable(
-			name = "user_role", 
-			joinColumns = @JoinColumn(
-					name = "user_id"
-					)
-			)
-	
-    @Enumerated(
-    		EnumType.STRING
-    		)
-    private Set<Role> roles;
-	
+	@CollectionTable(name = "user_role", 
+			 joinColumns = @JoinColumn(
+					name = "user_id"))
+	@Enumerated(EnumType.STRING)
+	private Set<Role> roles;
 	
 	
 	@ManyToMany
