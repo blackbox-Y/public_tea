@@ -18,10 +18,5 @@ public interface SalesService {
 	
 	public Tea changeTea (Long Id, Tea tea);
 
-	public String deleteTea (Long Id);
-	
-	
-//	public Page <Tea> searchTea (int pageNumber, TeaRequest request);
-
-	
+	public String deleteTea (Long Id);	
 }
