@@ -1,9 +1,9 @@
 spring:
 datasource:
 driver-class name: org.postgresql.Driver
-url: jdbc:postgresql://localhost:5432/TeaShop
-username: postgres
-password: 4221
+url: jdbc:postgresql://localhost:5432/TeaProject
+username: admin
+password: admin
 jpa:
 hibernate:
 ddl-auto: update
